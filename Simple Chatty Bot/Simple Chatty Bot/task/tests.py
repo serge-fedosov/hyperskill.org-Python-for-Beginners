@@ -4,19 +4,24 @@ from hstest.test_case import TestCase
 CheckResult.correct = lambda: CheckResult(True, '')
 CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
 
+
 class ChattyBotTest(StageTest):
     def generate(self) -> List[TestCase]:
+        stdin = "Marry\n1\n0\n5\n10"
+        for i in range(10):
+            stdin += f'\n{i}'
         return [
-            TestCase(stdin="John\n1\n2\n1", attach=("John", 22)),
-            TestCase(stdin="Nick\n2\n0\n0", attach=("Nick", 35))
+            TestCase(stdin=stdin, attach=("Marry", 40, 10))
         ]
 
     def check(self, reply: str, clue: Any) -> CheckResult:
         lines = reply.strip().splitlines()
-        if len(lines) != 7:
+        length = 9 + clue[2] + 1
+        if len(lines) <= length:
             return CheckResult.wrong(
-                "You should output 7 lines!\n" +
-                f"Lines found: {len(lines)}"
+                f"You should output at least {length} lines " +
+                f"(for the count number {clue[2]}).\n" +
+                f"Lines found: {len(lines)}\n"
                 f"Your output:\n"
                 f"{reply.strip()}"
             )
@@ -37,10 +42,30 @@ class ChattyBotTest(StageTest):
 
         if age not in line_with_age:
             return CheckResult.wrong(
-                "Can't find a correct age " +
-                "in the last line of output! " +
+                "Can't find a correct age! " +
                 "Maybe you calculated the age wrong?\n\n" +
-                "Your last line: \n" + "\"" + lines[6] + "\""
+                "Your line with age: \n" + "\"" + lines[6] + "\""
+            )
+
+        for i in range(clue[2] + 1):
+            num_line = lines[i + 8].strip().replace(' ', '')
+            actual_num = f'{i}!'
+
+            if num_line != actual_num:
+                return CheckResult.wrong(
+                    f"Expected {i + 8}-th line: \n" +
+                    f"\"{actual_num}\"\n" +
+                    f"Your {i + 8}-th line: \n" +
+                    f"\"{num_line}\""
+                )
+
+        last_line = lines[-1]
+        if "Congratulations, have a nice day!" != last_line:
+            return CheckResult.wrong(
+                "Your last line should be:\n" +
+                "\"Congratulations, have a nice day!\"\n" +
+                "Found:\n" +
+                f"\"{last_line}\""
             )
 
         return CheckResult.correct()

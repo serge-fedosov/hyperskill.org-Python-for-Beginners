@@ -104,5 +104,8 @@ files:
     print('Completed, have a nice day!')
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/8802#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sun, 23 Oct 2022 11:33:02 UTC
+record: 4
