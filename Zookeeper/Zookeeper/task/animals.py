@@ -13,7 +13,7 @@ Switching on the camera in the camel habitat...
               ! ; !'',,,',',,,,'!  ;   ;:
              : ;  ! !       ! ! ;  ;   :;
              ; ;   ! !      ! !  ; ;   ;,
-            ; ;    ! !     ! !   ; ;     
+            ; ;    ! !     ! !   ; ;
             ; ;    ! !    ! !     ; ;
            ;,,      !,!   !,!     ;,;
            /_I      L_I   L_I     /_I
@@ -94,7 +94,7 @@ _________________               _________________
            /___      /\   /\      ___\
                 ~-. /  \_/  \ .-~
                    V         V
-This bat looks like it’s doing fine."""
+This bat looks like it's doing fine."""
 
 rabbit = r"""
 Switching on the camera in the rabbit habitat...

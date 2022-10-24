@@ -292,5 +292,11 @@ files:
         Zookeeper('zookeeper.zookeeper').run_tests()
   learner_created: false
 feedback_link: https://hyperskill.org/projects/98/stages/541/implement#comment
-status: Unchecked
-record: -1
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #1
+
+    You should output a camel when the input is the number 0
+  time: Mon, 24 Oct 2022 14:51:37 UTC
+record: 3
