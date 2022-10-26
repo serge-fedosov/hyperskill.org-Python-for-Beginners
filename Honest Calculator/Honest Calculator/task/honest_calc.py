@@ -6,15 +6,8 @@ while error:
     calc = input()
     try:
         x, oper, y = calc.split()
-        if x.find(".") == -1:
-            x = int(x)
-        else:
-            x = float(x)
-
-        if y.find(".") == -1:
-            y = int(y)
-        else:
-            y = float(y)
+        x = float(x)
+        y = float(y)
     except Exception:
         print("Do you even know what numbers are? Stay focused!")
         continue
@@ -23,4 +16,20 @@ while error:
         print("Yes ... an interesting math operation. You've slept through all classes, haven't you?")
         continue
 
+    if oper == "/" and y == 0:
+        print("Yeah... division by zero. Smart move...")
+        continue
+
     error = False
+
+    result = 0.0
+    if oper == "+":
+        result = x + y
+    elif oper == "-":
+        result = x - y
+    elif oper == "*":
+        result = x * y
+    elif oper == "/":
+        result = x / y
+
+    print(result)
