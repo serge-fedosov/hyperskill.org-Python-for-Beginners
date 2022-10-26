@@ -92,12 +92,6 @@ files:
 - name: zookeeper/zookeeper.py
   visible: true
   learner_created: false
-feedback_link: https://hyperskill.org/projects/98/stages/539/implement#comment
-status: Failed
-feedback:
-  message: |-
-    Wrong answer in test #1
-
-    Your output should be like in the example!
-  time: Mon, 24 Oct 2022 14:28:56 UTC
+feedback_link: https://hyperskill.org/learn/step/8815#comment
+status: Solved
 record: 1

@@ -174,12 +174,6 @@ files:
     if __name__ == '__main__':
         Zookeeper('zookeeper.zookeeper').run_tests()
   learner_created: false
-feedback_link: https://hyperskill.org/projects/98/stages/540/implement#comment
-status: Failed
-feedback:
-  message: |-
-    Wrong answer in test #1
-
-    You should output a camel!
-  time: Mon, 24 Oct 2022 14:44:40 UTC
+feedback_link: https://hyperskill.org/learn/step/8816#comment
+status: Solved
 record: 2
