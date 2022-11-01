@@ -10,7 +10,9 @@ msg_6 = " ... lazy"
 msg_7 = " ... very lazy"
 msg_8 = " ... very, very lazy"
 msg_9 = "You are"
-
+msg_10 = "Are you sure? It is only one digit! (y / n)"
+msg_11 = "Don't be silly! It's just one number! Add to the memory? (y / n)"
+msg_12 = "Last chance! Do you really want to embarrass yourself? (y / n)"
 
 def check(v1, v2, v3):
     msg = ""
@@ -82,7 +84,28 @@ while repeat:
         print(msg_4)
         answer = input()
         if answer == "y":
-            memory = result
+            if is_one_digit(result):
+                msg_index = 10
+                save = True
+                while msg_index < 13:
+                    if msg_index == 10:
+                        print(msg_10)
+                    elif msg_index == 11:
+                        print(msg_11)
+                    elif msg_index == 12:
+                        print(msg_12)
+
+                    msg_index += 1
+                    answer3 = input()
+                    if answer3 == "y":
+                        continue
+                    elif answer3 == "n":
+                        save = False
+                        break
+                if save:
+                    memory = result
+            else:
+                memory = result
         elif answer != "n":
             continue
 
