@@ -1,2 +1,5 @@
 content:
 - Loop control statements
+- Math functions
+- Random module
+- Argparse module
