@@ -1,35 +1,75 @@
 import math
 
-loan_principal = 'Enter the loan principal:'
 what_calculate = '''What do you want to calculate?
-type "m" - for number of monthly payments,
-type "p" - for the monthly payment:'''
+type "n" for number of monthly payments,
+type "a" for annuity monthly payment amount,
+type "p" for loan principal:'''
+loan_principal = 'Enter the loan principal:'
 monthly_payment = "Enter the monthly payment:"
-repay_loan = "It will take {} month{} to repay the loan"
-number_months = "Enter the number of months:"
-your_monthly_payment = "Your monthly payment = {}"
-last_payment = "Your monthly payment = {} and the last payment = {}."
+loan_interest = "Enter the loan interest:"
+repay_loan = "It will take {}{}{} to repay this loan!"
+# repay_loan = "It will take 8 years and 2 months to repay this loan!"
+number_periods = "Enter the number of periods:"
+your_monthly_payment = "Your monthly payment = {}!"
+annuity_payment = "Enter the annuity payment:"
+your_loan_principal = "Your loan principal = {}!"
 
-print(loan_principal)
-principal = int(input())
+
 print(what_calculate)
 command = input()
-if command == "m":
+
+if command == "n":
+    print(loan_principal)
+    p = int(input())
+
     print(monthly_payment)
-    payment = int(input())
-    months = math.ceil(principal / payment)
-    print()
-    if months == 1:
-        print(repay_loan.format(months, ""))
-    else:
-        print(repay_loan.format(months, "s"))
+    a = int(input())
+
+    print(loan_interest)
+    i = float(input()) / 1200
+
+    n = math.ceil(math.log(a / (a - i * p), 1 + i))
+    y = n // 12
+    n = n - y * 12
+
+    years = ""
+    months = ""
+    if y != 0:
+        if y == 1:
+            years = "1 year"
+        else:
+            years = str(y) + " years"
+
+    if n != 0:
+        if n == 1:
+            months = "1 month"
+        else:
+            months = str(n) + " months"
+
+    print(repay_loan.format(years, " and " if y != 0 and n != 0 else "",months))
+
+elif command == "a":
+    print(loan_principal)
+    p = int(input())
+
+    print(number_periods)
+    n = int(input())
+
+    print(loan_interest)
+    i = float(input()) / 1200
+
+    a = math.ceil(p * i * (1 + i) ** n / ((1 + i) ** n - 1))
+    print(your_monthly_payment.format(a))
+
 elif command == "p":
-    print(number_months)
-    months = int(input())
-    payment = math.ceil(principal / months)
-    print()
-    if payment * months == principal:
-        print(your_monthly_payment.format(payment))
-    else:
-        last_payment_ = principal - (months - 1) * payment
-        print(last_payment.format(payment, last_payment_))
+    print(annuity_payment)
+    a = float(input())
+
+    print(number_periods)
+    n = int(input())
+
+    print(loan_interest)
+    i = float(input()) / 1200
+
+    p = round(a / (i * (1 + i) ** n / ((1 + i) ** n - 1)))
+    print(your_loan_principal.format(p))
