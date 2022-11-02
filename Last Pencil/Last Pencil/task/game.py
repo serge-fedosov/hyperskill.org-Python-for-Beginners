@@ -71,7 +71,19 @@ player = choose_player()
 while pencils > 0:
     print(pencil * pencils)
     print(turn.format(names[player]))
-    pencils -= take_pencils(pencils)
+    if player == 0:
+        pencils -= take_pencils(pencils)
+    else:
+        if pencils % 4 == 0:
+            take = 3
+        elif pencils % 4 == 3:
+            take = 2
+        else:
+            take = 1
+
+        pencils -= take
+        print(take)
+
     player = 1 if player == 0 else 0
 
 print(won.format(names[player]))
