@@ -1,46 +1,24 @@
-# impossible = "Impossible"
-# draw = "Draw"
-# game_not_finished = "Game not finished"
-#
-#
-# def win(v):
-#     return a[0] == v and a[1] == v and a[2] == v \
-#         or a[3] == v and a[4] == v and a[5] == v \
-#         or a[6] == v and a[7] == v and a[8] == v \
-#         or a[0] == v and a[3] == v and a[6] == v \
-#         or a[1] == v and a[4] == v and a[7] == v \
-#         or a[2] == v and a[5] == v and a[8] == v \
-#         or a[0] == v and a[4] == v and a[8] == v \
-#         or a[2] == v and a[4] == v and a[6] == v
-#
-#
-# def check(s):
-#     if win("X") and win("O"):
-#         print(impossible)
-#         return
-#
-#     if abs(s.count("X") - s.count("O")) >= 2:
-#         print(impossible)
-#         return
-#
-#     if win("X"):
-#         print("X wins")
-#         return
-#     elif win("O"):
-#         print("O wins")
-#         return
-#
-#     if s.count("_") == 0:
-#         print(draw)
-#         return
-#
-#     print(game_not_finished)
-
-# check(a)
-
 cell_occupied = "This cell is occupied! Choose another one!"
 enter_numbers = "You should enter numbers!"
 wrong_coordinates = "Coordinates should be from 1 to 3!"
+xo_draw = "Draw"
+x_wins = "X wins"
+o_wins = "O wins"
+
+
+def win(grid, v):
+    return grid[0] == v and grid[1] == v and grid[2] == v \
+        or grid[3] == v and grid[4] == v and grid[5] == v \
+        or grid[6] == v and grid[7] == v and grid[8] == v \
+        or grid[0] == v and grid[3] == v and grid[6] == v \
+        or grid[1] == v and grid[4] == v and grid[7] == v \
+        or grid[2] == v and grid[5] == v and grid[8] == v \
+        or grid[0] == v and grid[4] == v and grid[8] == v \
+        or grid[2] == v and grid[4] == v and grid[6] == v
+
+
+def draw(grid):
+    return grid.count(" ") == 0
 
 
 def print_grid(grid):
@@ -51,7 +29,7 @@ def print_grid(grid):
     print("---------")
 
 
-def move(grid):
+def move(grid, value):
     while True:
         val_y, val_x = input().split()
 
@@ -66,15 +44,26 @@ def move(grid):
             print(wrong_coordinates)
             continue
 
-        if a[3 * (y - 1) + x - 1] != "_":
+        if grid[3 * (y - 1) + x - 1] != " ":
             print(cell_occupied)
             continue
 
-        grid[3 * (y - 1) + x - 1] = "X"
+        grid[3 * (y - 1) + x - 1] = value
         return
 
 
-a = list(input())
+player = "X"
+a = [" "] * 9
 print_grid(a)
-move(a)
-print_grid(a)
+
+while not win(a, "X") and not win(a, "O") and not draw(a):
+    move(a, player)
+    print_grid(a)
+    player = "X" if player == "O" else "O"
+
+if win(a, "X"):
+    print(x_wins)
+elif win(a, "O"):
+    print(o_wins)
+else:
+    print(xo_draw)
