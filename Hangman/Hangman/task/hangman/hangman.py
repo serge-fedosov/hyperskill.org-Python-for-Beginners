@@ -1,17 +1,31 @@
 import random
 
+hangman = "H A N G M A N"
+input_letter = "Input a letter: "
+no_letter = "That letter doesn't appear in the word."
+thanks = "Thanks for playing!"
+
 words = ["python", "java", "swift", "javascript"]
 chosen_word = words[random.randint(0, len(words) - 1)]
+letters = set()
 
-arr = list(chosen_word)
-for i in range(3, len(arr)):
-    arr[i] = "-"
+print(hangman)
+print()
+print("-" * len(chosen_word))
 
-hidden_word = "".join(arr)
+for _ in range(8):
+    letter = input(input_letter)
+    letters.add(letter)
+    if letter not in chosen_word:
+        print(no_letter)
 
-print("H A N G M A N")
-word = input(f"Guess the word {hidden_word}: ")
-if word == chosen_word:
-    print("You survived!")
-else:
-    print("You lost!")
+    hidden_word = ""
+    for i in range(len(chosen_word)):
+        letter_i = chosen_word[i]
+        hidden_word += letter_i if letter_i in letters else "-"
+
+    print()
+    print(hidden_word)
+
+print()
+print(thanks)

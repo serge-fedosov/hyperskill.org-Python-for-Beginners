@@ -139,9 +139,9 @@ files:
 - name: test/__init__.py
   visible: false
   learner_created: false
-feedback_link: https://hyperskill.org/projects/69/stages/375/implement#comment
+feedback_link: https://hyperskill.org/learn/step/6085#comment
 status: Solved
 feedback:
   message: Congratulations!
   time: Wed, 02 Nov 2022 20:21:36 UTC
-record: -1
+record: 4
